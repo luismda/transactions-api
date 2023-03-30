@@ -13,7 +13,15 @@ export async function transactionsRoutes(app: FastifyInstance) {
       sessionId,
     )
 
-    return { transactions }
+    const transactionsListWithAmountAsNumber = transactions.map(
+      (transaction) => {
+        return { ...transaction, amount: Number(transaction.amount) }
+      },
+    )
+
+    return {
+      transactions: transactionsListWithAmountAsNumber,
+    }
   })
 
   app.get(
@@ -43,7 +51,14 @@ export async function transactionsRoutes(app: FastifyInstance) {
         })
         .first()
 
-      return { transaction }
+      const transactionWithAmountAsNumber = transaction
+        ? {
+            ...transaction,
+            amount: Number(transaction.amount),
+          }
+        : undefined
+
+      return { transaction: transactionWithAmountAsNumber }
     },
   )
 
@@ -58,7 +73,14 @@ export async function transactionsRoutes(app: FastifyInstance) {
         .sum('amount', { as: 'amount' })
         .first()
 
-      return { summary }
+      const summaryWithAmountAsNumber = summary
+        ? {
+            ...summary,
+            amount: Number(summary.amount),
+          }
+        : undefined
+
+      return { summary: summaryWithAmountAsNumber }
     },
   )
 
