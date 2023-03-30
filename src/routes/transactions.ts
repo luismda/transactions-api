@@ -16,24 +16,36 @@ export async function transactionsRoutes(app: FastifyInstance) {
     return { transactions }
   })
 
-  app.get('/:id', { preHandler: [checkSessionIdExists] }, async (request) => {
-    const getTransactionParamsSchema = z.object({
-      id: z.string().uuid(),
-    })
-
-    const { id } = getTransactionParamsSchema.parse(request.params)
-
-    const { sessionId } = request.cookies
-
-    const transaction = await knex('transactions')
-      .where({
-        id,
-        session_id: sessionId,
+  app.get(
+    '/:id',
+    { preHandler: [checkSessionIdExists] },
+    async (request, reply) => {
+      const getTransactionParamsSchema = z.object({
+        id: z.string().uuid(),
       })
-      .first()
 
-    return { transaction }
-  })
+      const schema = getTransactionParamsSchema.safeParse(request.params)
+
+      if (schema.success === false) {
+        return reply.status(400).send({
+          error: `Invalid request param format: ${schema.error.message}`,
+        })
+      }
+
+      const { id } = schema.data
+
+      const { sessionId } = request.cookies
+
+      const transaction = await knex('transactions')
+        .where({
+          id,
+          session_id: sessionId,
+        })
+        .first()
+
+      return { transaction }
+    },
+  )
 
   app.get(
     '/summary',
@@ -57,9 +69,15 @@ export async function transactionsRoutes(app: FastifyInstance) {
       type: z.enum(['credit', 'debit']),
     })
 
-    const { title, amount, type } = createTransactionBodySchema.parse(
-      request.body,
-    )
+    const schema = createTransactionBodySchema.safeParse(request.body)
+
+    if (schema.success === false) {
+      return reply.status(400).send({
+        error: `Invalid request body format: ${schema.error.message}`,
+      })
+    }
+
+    const { title, amount, type } = schema.data
 
     let sessionId = request.cookies.sessionId
 
