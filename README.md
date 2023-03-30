@@ -1,6 +1,6 @@
 # Transactions API 💸
 
-Esse projeto é uma **API Rest em Node.js** completa para controle de transações financeiras de crédito (entrada) e débito (saída). Toda a aplicação foi desenvolvida a partir dos **requisitos funcionais** e **regras de negócio** elencados abaixo.
+Esse projeto é uma **API Rest em Node.js** completa para controle de transações financeiras de crédito (entrada) e débito (saída). O projeto foi construído na trilha de Node.js do Ignite - bootcamp de especialização da [**Rocketseat**](https://github.com/rocketseat-education). Toda a aplicação foi desenvolvida a partir dos **requisitos funcionais** e **regras de negócio** elencados abaixo.
 
 ## Requisitos funcionais
 
@@ -24,7 +24,7 @@ Ao criar uma nova transação, um **cookie** é devolvido para o cliente da requ
 
 ### Roteamento e base do projeto
 
-Como base para essa API foi utilizado o **Fastify** para o gerenciamento das rotas da aplicação. Além disso, também foi utilizado o **TypeScript** para proporcionar melhor experiência de desenvolvimento em conjunto do **ES Lint** para manter a padronização de escrita no código.
+Como base para essa API foi utilizado o **Fastify** para o gerenciamento das rotas da aplicação. Além disso, também foi utilizado o **TypeScript** para proporcionar melhor experiência de desenvolvimento, em conjunto do **ES Lint** para manter a padronização de escrita no código.
 
 ### Banco de dados
 
