@@ -1,44 +1,44 @@
 # Transactions API 💸
 
-Esse projeto é uma **API Rest em Node.js** completa para controle de transações financeiras de crédito (entrada) e débito (saída). O projeto foi construído na trilha de Node.js do Ignite - bootcamp de especialização da [**Rocketseat**](https://github.com/rocketseat-education). Toda a aplicação foi desenvolvida a partir dos **requisitos funcionais** e **regras de negócio** elencados abaixo.
+This project is a complete **Rest API in Node.js** for controlling credit (incoming) and debiting (outgoing) financial transactions. The project was built on the track of Node.js from Ignite - specialization bootcamp of [**Rocketseat**](https://github.com/rocketseat-education). The entire application was developed based on the **functional requirements** and **business rules** listed below.
 
-## Requisitos funcionais
+## Functional requirements
 
-- Deve ser possível criar uma nova transação
-- Deve ser possível obter um resumo de transações
-- Deve ser possível listar todas as transações já realizadas
-- Deve ser possível visualizar uma única transação
+- It should be able to create a new transaction
+- It should be able to get a summary of transactions
+- It should be able to list all transactions
+- It should be able to get a specific transaction
 
-## Regras de negócio
+## Business rules
 
-- Uma transação pode ser do tipo crédito que somará ao valor total, ou débito que subtrairá
-- O título de uma transação deve ter no mínimo três caracteres
-- Deve ser possível indentificar cada usuário na requisição
-- Um usuário só poderá ver as transações que ele criou
+- A transaction can be of the credit type that will add to the total amount, or debit that will subtract
+- The title of a transaction must be at least three characters long
+- It should be able to identify each user in the request
+- A user will only be able to see the transactions he created
 
-## Sobre o projeto 👀
+## More about the project 👀
 
-### Descrição
+### Description
 
-Ao criar uma nova transação, um **cookie** é devolvido para o cliente da requisição, servindo como uma forma de sessão que permite identficar o usuário nas próximas requisições. Esse cookie é obrigatório em todas as rotas, execeto a de criação, para permitir buscar as transações e o resumo apenas de um usuário, não permitindo acessar transações de outro usuário.
+When creating a new transaction, a **cookie** is returned to the request client, serving as a form of session that allows identifying the user in future requests. This cookie is mandatory in all routes, except the creation one, to allow searching for transactions and the summary of only one user, not allowing access to transactions of another user.
 
-### Roteamento e base do projeto
+### Routing and project base
 
-Como base para essa API foi utilizado o **Fastify** para o gerenciamento das rotas da aplicação. Além disso, também foi utilizado o **TypeScript** para proporcionar melhor experiência de desenvolvimento, em conjunto do **ES Lint** para manter a padronização de escrita no código.
+The base for this API was the **Fastify** for application route management, together with **Zod** for the validation, transforming and type definition of entries data to each route (parameters and request body). Also, was used **TypeScript** for provide best development experience and ficilitate the maintenance process, together with **ES Lint** to define patterns for writing code.
 
-### Banco de dados
+### Database
 
-A solução de banco de dados utilizada em desenvolvimento foi o **SQLite**, já em produção foi o **PostgreSQL**. Além disso, o query builder **Knex** também foi utilizado para facilitar a troca do cliente de banco de dados sem precisar fazer grandes alterações no código, em conjunto do uso de migrations para controle de versão da estrutura do banco.
+The database solution used in development was **SQLite**, already in production was used **PostgreSQL**. Also, **Knex** query builder is used to facilitate the swap of database client without need make big changes in code, together of use migrations to controlling version of database schema.
 
-### Testes automatizados
+### Automated tests
 
-Nessa aplicação foi desenvolvido testes do tipo **E2E**, utilizando ferramentas como **Vitest** e **SuperTest**.
+In this application was developed tests on type **E2E** (end-to-end), using tools as **Vitest** and **SuperTest**. The choice of Vitest was based mainly in performance, since he use esbuild, also native support to the TypeScript and the big resemblance of functionalities with Jest.
 
 ### Deploy
 
-O deploy da aplicação foi feito utilizando o plano gratuito da plataforma **Render**. Dentro da plataforma foi criado o banco de dados PostgreSQL e o Web Service, conectando com o repositório do GitHub para automatizar o processo. Além disso, a ferramenta **TSUP** ajudou no processo de build da aplicação, deixando mais performático.
+The deploy of application was made using the free plan of platform **Render**. Inside of platform the PostgreSQL database and Web Service were created, connecting with the repository of GitHub to automate the process. Also, the tool **TSUP** helped in build process of application, being more performative by too use the esbuild.
 
-## Todas as ferramentas e tecnologias do projeto 🧰
+## All tools and technologies 🧰
 
 - TypeScript
 - Node.js
